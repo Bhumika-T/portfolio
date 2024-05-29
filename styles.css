@@ -1,0 +1,167 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.main{
+    height:100vh;
+    background-image: url(./5651978.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+}
+.aboutme{
+    height: 100vh;
+    width:100vw;
+    
+}
+.img{
+    width:20vw;
+    height:55vh;
+}
+img{
+    width:20vw;
+    height:55vh;
+    border-radius: 20px;
+   
+}
+.container{
+    padding:20vh 10vw;
+    display: flex;
+    
+
+}
+.textcont{
+    font-weight: 800;
+    font-size: 3rem;
+    width: 30vw;
+   
+}
+.text2{
+    margin-top: 5vh;
+    width: 30vw;
+    
+
+}
+.text3{
+    margin-top: 5vh;
+
+
+}
+.container2{
+    display:flex;
+    padding:10vh 10vw;
+    gap: 5vw;
+    background: 100% 100%;
+
+}
+.info{
+    font-family: serif;
+    font-weight: 600;
+    font-size: 3rem;
+    color: blue;
+    margin-left: 2vw;
+}
+.img{
+    width:120vw;
+    height:80vh;
+    border-radius: 50%;
+
+}
+.textabout{
+    margin-top: 10vh;
+font-size: 2rem;
+margin-left: 2rem;
+ 
+}
+
+
+.skills{
+   
+ 
+    height:100vh;
+
+}
+.container3{
+    display:flex;
+    gap:50px;
+    
+    background-color:rgb(131, 128, 128);
+    
+}
+ul{
+    margin-top: 5rem;
+    font-size: 30px;
+
+}
+.container3 img{
+    width:20vw;
+    height:25vh;
+    margin-top: 5rem;
+    border-radius: 50px;
+}
+.container3 p{
+    font-size: 4rem;
+}
+.container4{
+    display:flex;
+    
+    font-size: 30px;
+    gap:20px;
+    
+    background-color:rgb(131, 128, 128);
+    
+}
+.skills2{
+  
+    
+    background-color:rgb(131, 128, 128);
+    
+
+    
+}
+.skills2 p{
+    font-size: 4rem;
+}
+.container4 img{
+    width:40vw;
+    height:40vh;
+}
+.contact{
+    width:100%;
+    height:100vh;
+}
+.contact img{
+    width:15vw;
+    height:10vh;
+    margin-left: 35%;
+    margin-top: 50px;
+}
+.contact p{
+    font-size: 30px;
+    margin-top: 70px;
+}
+.contact h1{
+    margin-top: 50px;
+    font-size: 40px;
+    padding:10px;
+    margin-left: 25%;
+    color: rgb(255, 0, 187);
+}
+.contactinfo {
+display:flex;
+margin-top: 30px;
+gap:20rem;
+}
+.container5{
+    display:flex;
+}
+.container5 img{
+    width:40vw;
+    height:40vh;
+    margin-left: 20px;
+}
+.h1{
+    text-align: center;
+}
