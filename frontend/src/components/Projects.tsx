@@ -62,14 +62,45 @@ const Projects = () => {
             >
               <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col hover:glow-effect transition-all duration-500 hover:-translate-y-2">
                 {/* Project Icon Header */}
-                <div className={`h-40 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
+                <div className={`h-40 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
                   <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+                  {/* Animated background circles */}
                   <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                    className="w-20 h-20 rounded-2xl glass-card flex items-center justify-center"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.5, 0.3],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 flex items-center justify-center"
                   >
-                    <project.icon className="w-10 h-10 text-primary" />
+                    <div className="w-32 h-32 rounded-full bg-primary/20 blur-2xl" />
+                  </motion.div>
+                  <motion.div
+                    animate={{
+                      scale: [1.2, 1, 1.2],
+                      opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div className="w-40 h-40 rounded-full bg-accent/20 blur-2xl" />
+                  </motion.div>
+                  {/* Icon container */}
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                    className="relative z-10 w-24 h-24 rounded-2xl glass-card flex items-center justify-center shadow-2xl group-hover:shadow-primary/50"
+                  >
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{
+                        background: 'conic-gradient(from 0deg, transparent, var(--primary), transparent)',
+                        filter: 'blur(8px)',
+                      }}
+                    />
+                    <project.icon className="w-12 h-12 text-primary relative z-10 drop-shadow-lg" />
                   </motion.div>
                 </div>
 
@@ -85,12 +116,14 @@ const Projects = () => {
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.techStack.map((tech) => (
-                      <span
+                      <motion.span
                         key={tech}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                        className="px-3 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/30 hover:bg-primary/30 hover:border-primary cursor-pointer transition-colors"
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
 
