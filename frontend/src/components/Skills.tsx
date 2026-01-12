@@ -94,9 +94,10 @@ const Skills = () => {
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                    viewport={{ once: true }}
                     className="flex flex-col items-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
                   >
                     <skill.icon 
