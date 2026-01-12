@@ -39,9 +39,9 @@ const Projects = () => {
     <section id="projects" className="py-24 relative">
       <div className="section-container dark:bg-background/70 light:bg-white/40 dark:backdrop-blur-sm light:backdrop-blur-sm" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.5 }}
           className="text-center mb-16"
         >
@@ -56,9 +56,9 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: -100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.15 }}
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: index * 0.1 }}
               viewport={{ once: false, amount: 0.5 }}
               className="group"
             >
