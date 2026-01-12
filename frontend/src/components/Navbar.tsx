@@ -54,10 +54,16 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="nav-link font-medium"
+                className="nav-link font-medium px-4 py-2 rounded-lg transition-all"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{
+                  backgroundColor: 'rgba(59, 130, 246, 0.4)',
+                  scale: 1.05,
+                  boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)',
+                }}
+                style={{ color: 'inherit' }}
               >
                 {link.name}
               </motion.a>
@@ -88,7 +94,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-colors"
             >
               {theme === 'dark' ? (
                 <Sun className="h-5 w-5 text-primary" />
@@ -100,6 +106,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="hover:bg-blue-500/20 hover:text-blue-500 transition-colors"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>

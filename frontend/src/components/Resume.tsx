@@ -6,15 +6,15 @@ import { Button } from '@/components/ui/button';
 
 const Resume = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: false, margin: '-100px' });
 
   return (
     <section id="resume" className="py-24 relative">
-      <div className="section-container" ref={ref}>
+      <div className="section-container sticky top-0 z-10 bg-background/80 dark:bg-background/70 light:bg-white/80 backdrop-blur light:backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 light:supports-[backdrop-filter]:bg-white/60" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
           <span className="text-primary font-medium mb-2 block">My credentials</span>
@@ -25,9 +25,9 @@ const Resume = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-2xl mx-auto"
         >
           <div className="glass-card rounded-2xl p-8 md:p-12 text-center glow-effect">
@@ -44,15 +44,20 @@ const Resume = () => {
             </p>
 
             <Button
-              asChild
               size="lg"
-              className="group rounded-full px-8 py-6 text-lg font-semibold"
+              className="group rounded-full px-8 py-6 text-lg font-semibold cursor-pointer"
               style={{ background: 'var(--gradient-primary)' }}
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/Bhumika_resume.pdf';
+                link.download = 'Bhumika_resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
             >
-              <a href="#" download>
-                <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                Download Resume
-              </a>
+              <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Download Resume
             </Button>
           </div>
         </motion.div>

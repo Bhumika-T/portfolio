@@ -36,15 +36,43 @@ const contactLinks = [
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: false, margin: '-100px' });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: -80,
+      scale: 0.95,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    },
+  };
 
   return (
     <section id="contact" className="py-24 relative">
-      <div className="section-container" ref={ref}>
+      <div className="section-container dark:bg-background/70 light:bg-white/40 dark:backdrop-blur-sm light:backdrop-blur-sm" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: -30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+          transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
           className="text-center mb-16"
         >
           <span className="text-primary font-medium mb-2 block">Get in touch</span>
@@ -57,29 +85,62 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {contactLinks.map((contact, index) => (
+        <motion.div 
+          className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {contactLinks.map((contact) => (
             <motion.a
               key={contact.name}
               href={contact.href}
               target={contact.name !== 'Email' ? '_blank' : undefined}
               rel={contact.name !== 'Email' ? 'noopener noreferrer' : undefined}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card rounded-2xl p-6 flex items-center gap-5 group hover:glow-effect transition-all duration-300 hover:-translate-y-1"
+              variants={itemVariants}
+              whileTap={{ scale: 0.98 }}
+              className="glass-card rounded-2xl p-6 flex items-center gap-5 group transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-primary"
             >
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                <contact.icon className="w-7 h-7 text-white" />
-              </div>
+              <motion.div 
+                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center flex-shrink-0`}
+                whileHover={{ 
+                  scale: 1.15,
+                  rotateY: 10,
+                }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{
+                    background: `conic-gradient(from 0deg, transparent, ${contact.color}, transparent)`,
+                    filter: 'blur(8px)',
+                  }}
+                />
+                <contact.icon className="w-7 h-7 text-white relative z-10" />
+              </motion.div>
               <div className="flex-grow min-w-0">
-                <h3 className="font-poppins font-semibold text-lg">{contact.name}</h3>
-                <p className="text-muted-foreground text-sm truncate">{contact.value}</p>
+                <motion.h3 
+                  className="font-poppins font-semibold text-lg group-hover:text-primary transition-colors"
+                >
+                  {contact.name}
+                </motion.h3>
+                <motion.p className="text-muted-foreground text-sm truncate">
+                  {contact.value}
+                </motion.p>
               </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all flex-shrink-0" />
+              <motion.div
+                animate={{ x: 0, y: 0 }}
+                whileHover={{ x: 3, y: -3 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
+                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+              </motion.div>
             </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

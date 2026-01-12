@@ -32,7 +32,7 @@ const skillCategories = [
     title: 'Backend',
     skills: [
       { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-      { name: 'Express.js', icon: SiExpress, color: '#ffffff' },
+      { name: 'Express.js', icon: SiExpress, color: '#000000' },
       { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
     ],
   },
@@ -48,8 +48,8 @@ const skillCategories = [
     title: 'Tools & Platforms',
     skills: [
       { name: 'Git', icon: SiGit, color: '#F05032' },
-      { name: 'GitHub', icon: SiGithub, color: '#ffffff' },
-      { name: 'Vercel', icon: SiVercel, color: '#ffffff' },
+      { name: 'GitHub', icon: SiGithub, color: '#333333' },
+      { name: 'Vercel', icon: SiVercel, color: '#000000' },
       { name: 'VS Code', icon: Code, color: '#007ACC' },
       { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
     ],
@@ -62,11 +62,12 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 relative">
-      <div className="section-container" ref={ref}>
+      <div className="section-container dark:bg-background/70 light:bg-white/40 dark:backdrop-blur-sm light:backdrop-blur-sm" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.5 }}
           className="text-center mb-16"
         >
           <span className="text-primary font-medium mb-2 block">My expertise</span>
@@ -80,9 +81,10 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: categoryIndex * 0.1 }}
+              viewport={{ once: false, amount: 0.5 }}
               className="glass-card rounded-2xl p-6 hover:glow-effect transition-all duration-300"
             >
               <h3 className="text-xl font-poppins font-semibold mb-6 gradient-text">

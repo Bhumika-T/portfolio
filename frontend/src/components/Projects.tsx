@@ -37,11 +37,12 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-24 relative">
-      <div className="section-container" ref={ref}>
+      <div className="section-container dark:bg-background/70 light:bg-white/40 dark:backdrop-blur-sm light:backdrop-blur-sm" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.5 }}
           className="text-center mb-16"
         >
           <span className="text-primary font-medium mb-2 block">What I've built</span>
@@ -55,9 +56,10 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              initial={{ opacity: 0, y: -100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
+              viewport={{ once: false, amount: 0.5 }}
               className="group"
             >
               <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col hover:glow-effect transition-all duration-500 hover:-translate-y-2">

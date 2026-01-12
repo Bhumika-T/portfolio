@@ -1,8 +1,20 @@
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
 import { ArrowDown, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Hero = () => {
+  const titleRef = useRef(null);
+  
+  // Animated bubbles
+  const bubbles = Array.from({ length: 8 }).map((_, i) => ({
+    id: i,
+    size: Math.random() * 100 + 40,
+    left: Math.random() * 100,
+    delay: Math.random() * 2,
+    duration: Math.random() * 8 + 8,
+  }));
+
   return (
     <section
       id="home"
@@ -13,6 +25,30 @@ const Hero = () => {
         <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
       </div>
+
+      {/* Animated bubbles */}
+      {bubbles.map((bubble) => (
+        <motion.div
+          key={bubble.id}
+          initial={{ y: '100vh', opacity: 0 }}
+          animate={{ y: '-100vh', opacity: [0, 0.6, 0.3, 0] }}
+          transition={{
+            duration: bubble.duration,
+            delay: bubble.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: `${bubble.size}px`,
+            height: `${bubble.size}px`,
+            left: `${bubble.left}%`,
+            background: `radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.3), rgba(187, 94, 43, 0.1))`,
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            boxShadow: `0 0 ${bubble.size / 2}px rgba(59, 130, 246, 0.2), inset -1px -1px 2px rgba(255, 255, 255, 0.1)`,
+          }}
+        />
+      ))}
 
       <div className="section-container relative z-10">
         <div className="text-center max-w-4xl mx-auto">
@@ -49,10 +85,17 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-poppins font-bold mb-4"
+            ref={titleRef}
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: false, amount: 0.5 }}
+            className="text-4xl sm:text-5xl md:text-7xl font-poppins font-bold mb-4 cursor-pointer"
+            style={{ fontSize: 'clamp(2.125rem, 6vw, 4.375rem)' }}
+            whileHover={{
+              scale: 1.05,
+              textShadow: '0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(187, 94, 43, 0.6)',
+            }}
           >
             Hi, I'm{' '}
             <span className="gradient-text">Bhumika T</span>
@@ -62,7 +105,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-3xl font-poppins font-semibold text-muted-foreground mb-6"
+            className="font-poppins font-semibold text-muted-foreground mb-6 cursor-pointer"
+            style={{ fontSize: 'clamp(1.125rem, 4vw, 1.875rem)' }}
+            whileHover={{
+              scale: 1.05,
+              color: 'hsl(217, 91%, 60%)',
+              textShadow: '0 0 20px rgba(187, 94, 43, 0.6)',
+            }}
+            transition={{ duration: 0.3 }}
           >
             Software Developer | Full Stack Engineer
           </motion.h2>
@@ -71,7 +121,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
+            className="text-muted-foreground max-w-2xl mx-auto mb-10 cursor-pointer"
+            style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)' }}
+            whileHover={{
+              scale: 1.02,
+              color: 'hsl(187, 94%, 43%)',
+              textShadow: '0 0 15px rgba(59, 130, 246, 0.5)',
+            }}
+            transition={{ duration: 0.3 }}
           >
             Building scalable web apps and intelligent systems with clean code and creativity.
           </motion.p>
