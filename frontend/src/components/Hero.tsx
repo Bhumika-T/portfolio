@@ -112,9 +112,8 @@ const Hero = () => {
               color: 'hsl(217, 91%, 60%)',
               textShadow: '0 0 20px rgba(187, 94, 43, 0.6)',
             }}
-            transition={{ duration: 0.3 }}
           >
-            Software Developer | Full Stack Engineer
+            Software Developer 
           </motion.h2>
 
           <motion.p
@@ -128,7 +127,6 @@ const Hero = () => {
               color: 'hsl(187, 94%, 43%)',
               textShadow: '0 0 15px rgba(59, 130, 246, 0.5)',
             }}
-            transition={{ duration: 0.3 }}
           >
             Building scalable web apps and intelligent systems with clean code and creativity.
           </motion.p>
