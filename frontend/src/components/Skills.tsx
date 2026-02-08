@@ -39,7 +39,7 @@ const skillCategories = [
   {
     title: 'Programming',
     skills: [
-      { name: 'C++ (DSA)', icon: SiCplusplus, color: '#00599C' },
+      { name: 'C++', icon: SiCplusplus, color: '#00599C' },
       { name: 'Java', icon: FileCode, color: '#ED8B00' },
       { name: 'C', icon: SiC, color: '#A8B9CC' },
     ],
